@@ -73,6 +73,7 @@ def assign_ticket(request, ticket_id):
 
 
 
+
 def detail_tickets(request, ticket_id):
     ticket = Ticket.objects.get(id =ticket_id)
     context = {'ticket': ticket}
@@ -88,20 +89,35 @@ def tickets_admin(request):
 
 
 def answer_ticket_admin(request , ticket_id):
-    ticket = Ticket.objects.get(id = ticket_id)
-    users = User.objects.filter(is_customer = True)
+    ticket = Ticket.objects.get(id = ticket_id , admin = request.user)
+    # answer_ticket = AnswerAdmin.objects.get(ticket_id = ticket_id , user = request.user)
     if request.method == 'POST':
         form = AnswerTicketAdminForm(request.POST  , instance = ticket)
         if form.is_valid():
                 ticket.is_resolved = True
                 form.save()
+                AnswerAdmin.objects.create(content = form.cleaned_data['content'] ,ticket_id = ticket.id , user = request.user)
+                messages.success(request , 'your answer was sent....')
                 return redirect('tickets_admin')
+
 
     else:
          form = AnswerTicketAdminForm(instance=ticket)
 
 
     return render(request , 'ticket/answer_admin.html' , context = {'form':form , 'ticket' : ticket})
+
+
+
+def is_resolved_tickets(request):
+    tickets = Ticket.objects.filter(is_resolved=True , customer = request.user )
+    return render(request , 'ticket/is_resolved_tickets.html' , context={'tickets':tickets})
+
+
+
+def description_answer_tickets(request , ticket_id):
+    answer_ticket = AnswerAdmin.objects.get(ticket= ticket_id)
+    return render(request  , 'ticket/description_answer_tickets.html'  ,context={'answer_ticket' : answer_ticket})
 
 
 
@@ -121,3 +137,5 @@ class SearchResultsTicket(generic.ListView):
         return Ticket.objects.filter(
             Q(ticket_id__icontains = query)
         )
+
+

@@ -8,15 +8,19 @@
             {% for ticket in tickets %}
               <table class="table">
           <tbody>
+
+
             <td >{{ ticket.ticket_title }}</td>
-            <tr>
-              <td >{{ ticket.ticket_id }}</td>
-                <a href="{% url 'assign_ticket' ticket.id %}">Assign ticket</a>
-            </tr>
+                {% if ticket.is_assigned_to_admin %}
+                     <td>{{ ticket.ticket_id }}</td>
+                     <p>فرستاده شده به ادمین سایت</p>
+                {% else %}
+                        <td >{{ ticket.ticket_id }}</td>
+                    <a href="{% url 'assign_ticket' ticket.id %}">Assign ticket</a>
+                {% endif %}
           </tbody>
 
         </table>
-                   <p>..............................................</p>
             {% endfor %}
 
 

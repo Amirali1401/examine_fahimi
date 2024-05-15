@@ -10,6 +10,8 @@
 </head>
 <body>
 {% block content %}
+    متن درخواست : {{ ticket.ticket_description }}
+    <br><br>
   <form action="#" method="POST">
       {% csrf_token %}
       {{ form.as_p }}

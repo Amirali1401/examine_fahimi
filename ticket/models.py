@@ -48,7 +48,7 @@ class Ticket(models.Model):
 class AnswerAdmin(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL , on_delete = models.CASCADE)
     content = models.TextField()
-    ticket = models.ForeignKey(Ticket , on_delete = models.CASCADE)
+    ticket  = models.ForeignKey(Ticket , on_delete = models.DO_NOTHING , related_name='answer_admin_tickets' , null = True , blank=True)
 
 
 

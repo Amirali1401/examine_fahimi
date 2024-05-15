@@ -15,25 +15,17 @@
 {% load static %}
 
 {% block content %}
-    {% for ticket in tickets %}
       <table class="table">
 
   <tbody>
-
-    <td >  {{ ticket.customer }}  : {{ ticket.ticket_title }}</td>
-        <td>
-         {% if ticket.is_resolved %}
-            <p>پاسخ داده شده</p>
-    {% else %}
-           <a   href="{% url 'answer_admin' ticket.id %}">ارسال پاسخ</a>
-        {% endif %}
-        </td>
-
+    <td >{{ answer_ticket.ticket.id }}</td>
+    <tr>
+      <td >{{ answer_ticket.content}}</td>
+    </tr>
   </tbody>
 
 </table>
-
-    {% endfor %}
+           <p>..............................................</p>
 
 {% endblock %}
 </body>

@@ -19,5 +19,5 @@ class AssignTicketForm(forms.ModelForm):
 class AnswerTicketAdminForm(forms.ModelForm):
     class Meta:
         model = AnswerAdmin
-        fields = ['user' , 'content' ]
+        fields = [ 'content' ]
 
