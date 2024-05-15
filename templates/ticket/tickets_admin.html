@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ticket Admin</title>
+</head>
+<body>
+   {% extends 'profile/profile_admin.html' %}
+{% load static %}
+{% load humanize %}
+{% load bootstrap5 %}
+{% load static %}
+
+{% block content %}
+    {% for ticket in tickets %}
+      <table class="table">
+
+  <tbody>
+    <td >{{ ticket.ticket_title }}</td>
+    <tr>
+      <td >{{ ticket.ticket_id }}</td>
+        <a href="{% url 'answer_admin' ticket.id %}">ارسال پاسخ</a>
+    </tr>
+  </tbody>
+
+</table>
+           <p>..............................................</p>
+    {% endfor %}
+
+{% endblock %}
+</body>
+</html>

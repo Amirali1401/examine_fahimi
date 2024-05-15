@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+       <form action="#" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ profile_form.avatar }} <img src = {{ profile.avatar.url }}>
+                <br><br>
+        {{ user_form.as_p }}
+         <br><br>
+         {{ profile_form.bio }}
+         <br><br>
+       <div class="box1">
+         {{ profile_form.first_name}}
+          <br><br>
+          {{ profile_form.last_name }}
+          <br><br>
+            {{ profile_form.national_code }}
+           <br><br>
+              {{ profile_form.phone_number}}
+       </div>
+        {% if profile_form.errors %}
+             {{ profile_form.errors }}
+        {% endif %}
+    <br><br>
+        <button type="submit" class="clockbox">edit information </button>
+    </form>
+
+</body>
+</html>

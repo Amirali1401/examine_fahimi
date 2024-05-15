@@ -1,0 +1,24 @@
+{% extends 'profile/profile_admin.html' %}
+{% load static %}
+{% load humanize %}
+{% load bootstrap5 %}
+{% load static %}
+
+{% block content %}
+            {% for ticket in tickets %}
+              <table class="table">
+          <tbody>
+          <tr>
+            <td >{{ ticket.ticket_title }}</td>
+          </tr>
+            <tr>
+              <td >{{ ticket.ticket_id }}</td>
+            </tr>
+          </tbody>
+
+        </table>
+                   <p>..............................................</p>
+            {% endfor %}
+
+
+{% endblock %}

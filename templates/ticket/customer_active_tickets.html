@@ -1,0 +1,23 @@
+{% extends 'profile/profile_user.html' %}
+{% load static %}
+{% load humanize %}
+{% load bootstrap5 %}
+{% load static %}
+
+{% block content %}
+            {% for ticket in tickets %}
+              <table class="table">
+          <tbody>
+            <td >{{ ticket.ticket_title }}</td>
+            <tr>
+              <td >{{ ticket.ticket_id }}</td>
+                <a href="{% url 'assign_ticket' ticket.id %}">Assign ticket</a>
+            </tr>
+          </tbody>
+
+        </table>
+                   <p>..............................................</p>
+            {% endfor %}
+
+
+{% endblock %}
